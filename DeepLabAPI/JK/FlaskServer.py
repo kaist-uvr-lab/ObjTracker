@@ -114,7 +114,7 @@ def GetColorMap(image, seg_map):
 LABEL_NAMES = np.array(['wall' ,'building' ,'sky' ,'floor' ,'tree' ,'ceiling' ,'road' ,'bed' ,'windowpane' ,'grass' ,'cabinet' ,'sidewalk' ,'person' ,'earth' ,'door' ,'table' ,'mountain' ,'plant' ,'curtain' ,'chair' ,'car' ,'water' ,'painting' ,'sofa' ,'shelf' ,'house' ,'sea' ,'mirror' ,'rug' ,'field' ,'armchair' ,'seat' ,'fence' ,'desk' ,'rock' ,'wardrobe' ,'lamp' ,'bathtub' ,'railing' ,'cushion' ,'base' ,'box' ,'column' ,'signboard' ,'chest of drawers' ,'counter' ,'sand' ,'sink' ,'skyscraper' ,'fireplace' ,'refrigerator' ,'grandstand' ,'path' ,'stairs' ,'runway' ,'case' ,'pool table' ,'pillow' ,'screen door' ,'stairway' ,'river' ,'bridge' ,'bookcase' ,'blind' ,'coffee table' ,'toilet' ,'flower' ,'book' ,'hill' ,'bench' ,'countertop' ,'stove' ,'palm' ,'kitchen island' ,'computer' ,'swivel chair' ,'boat' ,'bar' ,'arcade machine' ,'hovel' ,'bus' ,'towel' ,'light' ,'truck' ,'tower' ,'chandelier' ,'awning' ,'streetlight' ,'booth' ,'television' ,'airplane' ,'dirt track' ,'apparel' ,'pole' ,'land' ,'bannister' ,'escalator' ,'ottoman' ,'bottle' ,'buffet' ,'poster' ,'stage' ,'van' ,'ship' ,'fountain' ,'conveyer belt' ,'canopy' ,'washer' ,'plaything' ,'swimming pool' ,'stool' ,'barrel' ,'basket' ,'waterfall' ,'tent' ,'bag' ,'minibike' ,'cradle' ,'oven' ,'ball' ,'food' ,'step' ,'tank' ,'trade name' ,'microwave' ,'pot' ,'animal' ,'bicycle' ,'lake' ,'dishwasher' ,'screen' ,'blanket' ,'sculpture' ,'hood' ,'sconce' ,'vase' ,'traffic light' ,'tray' ,'ashcan' ,'fan' ,'pier' ,'crt screen' ,'plate' ,'monitor' ,'bulletin board' ,'shower' ,'radiator' ,'glass' ,'clock' ,'flag'])
 FULL_LABEL_MAP = np.arange(len(LABEL_NAMES)).reshape(len(LABEL_NAMES), 1)
 FULL_COLOR_MAP = label_to_color_image(FULL_LABEL_MAP)
-print(FULL_COLOR_MAP)
+#print(FULL_COLOR_MAP)
 ##################################################
 # API part
 ##################################################
@@ -175,6 +175,44 @@ def predict():
 # END API part
 ##################################################
 
+@app.route("/api/predictIndex", methods=['POST'])
+def predictIndex():
+    start = time.time()
+    data = request.data.decode("utf-8")
+
+    if data == "":
+        params = request.form
+        x_in = json.loads(params['image'])
+
+    else:
+        params = json.loads(data)
+        x_in = params['image']
+
+    ############
+    #Convert PIL Image
+    ######
+    width = len(x_in[0])
+    height = len(x_in)
+
+    na = np.array(x_in, dtype=np.uint8)
+
+    img = Image.fromarray(na, 'RGB')
+
+    img.save('./data/target.jpg')
+    im = img.load()
+
+    resized_img, seg_map = MODEL.run(img)
+
+    json_data = json.dumps({'seg_index': seg_map.tolist()})
+    print("Time spent handling the request: %f" % (time.time() - start))
+
+    return json_data
+
+@app.route("/api/colorMap", methods=['GET'])
+def colorMap():
+    json_data = json.dumps({'colorMap': FULL_COLOR_MAP.tolist()})
+    return json_data
+
 if __name__ == "__main__":
 
     ##################################################
@@ -193,4 +231,4 @@ if __name__ == "__main__":
     ##################################################
 
     print('Starting the API')
-    app.run(host='143.248.96.81', port = 35005)
+    app.run(host='143.248.96.69', port = 35005)
