@@ -202,8 +202,9 @@ def predictIndex():
     im = img.load()
 
     resized_img, seg_map = MODEL.run(img)
+    seg_image = GetColorMap(resized_img, seg_map)
 
-    json_data = json.dumps({'seg_index': seg_map.tolist()})
+    json_data = json.dumps({'seg_index': seg_map.tolist(), 'seg_image': seg_image.tolist()})
     print("Time spent handling the request: %f" % (time.time() - start))
 
     return json_data
