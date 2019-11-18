@@ -197,14 +197,17 @@ def predictIndex():
     na = np.array(x_in, dtype=np.uint8)
 
     img = Image.fromarray(na, 'RGB')
-
-    img.save('./data/target.jpg')
+    #img = img.transpose(Image.TRANSPOSE)
     im = img.load()
+    img.save('./data/target.jpg')
+    
 
     resized_img, seg_map = MODEL.run(img)
     seg_image = GetColorMap(resized_img, seg_map)
+    seg_img = Image.fromarray(seg_image, 'RGB')
+    seg_img.save('./data/seg_img.jpg')
 
-    json_data = json.dumps({'seg_index': seg_map.tolist(), 'seg_image': seg_image.tolist()})
+    json_data = json.dumps({'seg_index': seg_map.tolist()})
     print("Time spent handling the request: %f" % (time.time() - start))
 
     return json_data
