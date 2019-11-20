@@ -8,11 +8,6 @@ for k = 1:numel(S)
     F = S(k).name;
     readFileName = filePath + "/" + string(F);
     I = imread(readFileName);
-    fileName{k} = F;
-    segFiles{k} = I;
-end
-
-for i = 1:length(segFiles)
-    fileoutname = outPath + "/" + fileName(i);
-    convertFromADE(segFiles(i), fileoutname);
+    fileoutname = outPath + "/" + string(F);
+    convertFromADE(I, fileoutname);
 end
