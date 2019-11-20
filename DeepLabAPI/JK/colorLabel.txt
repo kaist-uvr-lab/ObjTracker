@@ -1,5 +1,4 @@
-bed = 
-door = [120, 120, 70]
-table = [8, 255, 51]
-shelf = [11, 102, 255]
-sofa = [255, 6, 51]
+door = [120, 120, 70] => idx 15 (objectinfo150.csv)
+table = [8, 255, 51] => idx 16 (objectinfo150.csv)
+shelf = [11, 102, 255] => idx 25 (objectinfo150.csv)
+sofa = [255, 6, 51] => idx 24 (objectinfo150.csv)
