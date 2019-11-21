@@ -12,10 +12,9 @@ def intersectionAndUnion(imPred, imLab, numClass):
     # Remove classes from unlabeled pixels in gt image. 
     # We should not penalize detections in unlabeled portions of the image.
     imPred = imPred * (imLab>0)
-
+    
     # Compute area intersection:
     intersection = imPred * (imPred==imLab)
-    print(intersection
     (area_intersection,_) = np.histogram(intersection, bins=numClass, range=(1, numClass))
 
     # Compute area union:

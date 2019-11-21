@@ -20,28 +20,25 @@ function convertFromADE(fileLabIn, fileLabOut)
     %imwrite(labOut, fileLabOut);
     
     [h, w, ~] = size(labOut);
-    %segImage = zeros(h, w, 3, 'uint8');
-    segImage = zeros(h, w, 1, 'uint8');
+    segImage = zeros(h, w, 3, 'uint8');
     for i = 1:h
         for j = 1:w
-            %if labOut(i, j) == 15
-            %    segImage(i, j, 1) = 120;
-            %    segImage(i, j, 2) = 120;
-            %    segImage(i, j, 3) = 70;
-            %elseif labOut(i, j) == 16
-            %    segImage(i, j, 1) = 8;
-            %    segImage(i, j, 2) = 255;
-            %    segImage(i, j, 3) = 51;
-            %elseif labOut(i, j) == 24
-            %    segImage(i, j, 1) = 255;
-            %    segImage(i, j, 2) = 6;
-            %    segImage(i, j, 3) = 51;
-            %elseif labOut(i, j) == 25
-            %    segImage(i, j, 1) = 11;
-            %    segImage(i, j, 2) = 102;
-            %    segImage(i, j, 3) = 255;
-            if labOut(i, j) ~= 15 && labOut(i, j) ~= 16 && labOut(i, j) ~= 24 && labOut(i, j) ~= 25
-                segImage(i, j) = 0;
+            if labOut(i, j) == 15
+                segImage(i, j, 1) = 120;
+                segImage(i, j, 2) = 120;
+                segImage(i, j, 3) = 70;
+            elseif labOut(i, j) == 16
+                segImage(i, j, 1) = 8;
+                segImage(i, j, 2) = 255;
+                segImage(i, j, 3) = 51;
+            elseif labOut(i, j) == 24
+                segImage(i, j, 1) = 255;
+                segImage(i, j, 2) = 6;
+                segImage(i, j, 3) = 51;
+            elseif labOut(i, j) == 25
+                segImage(i, j, 1) = 11;
+                segImage(i, j, 2) = 102;
+                segImage(i, j, 3) = 255;
             end
         end
     end
