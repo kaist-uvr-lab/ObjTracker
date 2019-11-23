@@ -12,3 +12,4 @@ This folder contains both server and segmentation client. For server, there is "
 To test semantic segmentation, use JK Test.ipynb on jupyter notebook. At the moment, I've setup jupyter such that anyone can access the code via:
 > http://143.248.96.69:8888/
 
+
