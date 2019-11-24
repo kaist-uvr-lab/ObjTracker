@@ -107,7 +107,7 @@ def vis_segmentation(image, seg_map):
 def GetColorMap(image, seg_map):
     seg_image = label_to_color_image(seg_map).astype(np.uint8)
     unique_labels = np.unique(seg_map)
-    print(FULL_LABEL_MAP[unique_labels].astype(np.uint8))
+    #print(FULL_LABEL_MAP[unique_labels].astype(np.uint8))
     #print(unique_labels)
     return seg_image
 
