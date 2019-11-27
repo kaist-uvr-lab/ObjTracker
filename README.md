@@ -14,7 +14,7 @@ This folder contains both server and segmentation client. For server, there is "
 > python FlaskServer.py bdist_wheel
 ### Structure
 - ../../Dataset/Seg_result: output folder that contains images overlapping predicted segmentation result with original RGB image
-result.txt: IoU result from JK Test.ipynb
+- result.txt: IoU result from JK Test.ipynb
 
 
 To test semantic segmentation, use JK Test.ipynb on jupyter notebook. At the moment, I've setup jupyter such that anyone can access the code via:
