@@ -3,7 +3,7 @@ This project contains flask-based deeplab v3 server that receives images as json
 
 # Description
 ## Dataset
-Dataset contains actual ADE20k validation dataset for livingroom as well as ground truth segmentation images and estimated segmentation images. The model itself has been trained using ADE20k training dataset. At the moment, the categories for segmentation is: "door", "sofa", "shelf", "table."
+Dataset contains actual ADE20k validation dataset for livingroom as well as ground truth segmentation images and estimated segmentation images. The model itself has been trained using ADE20k training dataset. At the moment, the categories for segmentation is: "floor", "sofa", "shelf", "table."
 
 ## Deeplab API
 This folder contains both server and segmentation client. For server, there is "flaskServer.py" that uses Flask to setup server. To start server: 
