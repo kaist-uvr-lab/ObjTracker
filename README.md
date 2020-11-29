@@ -17,7 +17,8 @@ This folder contains both server and segmentation client. For server, there is "
 - result.txt: IoU result from JK Test.ipynb
 
 
-To test semantic segmentation, use JK Test.ipynb on jupyter notebook. At the moment, I've setup jupyter such that anyone can access the code via:
-> http://143.248.96.69:8888/
+To test semantic segmentation, use JK Test.ipynb on jupyter notebook.
 
 
+## Acknowledgment
+This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT) (No.2019-0-01270, WISE AR UI/UX Platform Development for Smartglasses)
